@@ -1,4 +1,4 @@
-# ClickCastingTooltip
+# AuctionatorShoppingListCleaner
 
 [![PayPal Donate](https://img.shields.io/badge/Donate-PayPal-blue?style=for-the-badge)](https://www.paypal.com/donate/?business=4VQNAB2VMV4J8&no_recurring=0&currency_code=BRL&locale.x=EN) [![Doar com PagBank - é rápido, grátis e seguro!](https://img.shields.io/badge/Donate_Brazil-PagSeguro/PagBank-Green?style=for-the-badge)](https://pag.ae/81u_gUZeo/button)
 
@@ -21,8 +21,8 @@ Allow viewing Auctionator shopping lists filter rules outside of the Auction Hou
 
 ## Controls, Configurations, Commands and Usability Features
 Use the following slash command to control the addon.  
-/AuctionatorShoppingListCleaner: Toggle Click Casting Bindings Panel.  
-/ASLC: Toggle Auctionator Shopping List Cleaner Panel .  
+/AuctionatorShoppingListCleaner: Toggle Auctionator Shopping List Cleaner Panel.  
+/ASLC: Toggle Auctionator Shopping List Cleaner Panel.  
 
 ## Bug Reports
 To report bugs, add an issue to the project page on GitHub.  
