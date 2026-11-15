@@ -2,10 +2,11 @@
 ## Title: Auctionator Shopping List Cleaner
 ## Notes: A simple plugin for Auctionator that allows you to select and delete specific Auction House shopping lists—or all of them at once.
 ## Author: Thiago Franco (Topolino)
-## Version: 1.0.0
+## Version: 1.0.1
 ## X-Curse-Project-ID: 1752545
 ## RequiredDeps: Auctionator
 ## SavedVariables: AUCTIONATOR_SHOPPING_LISTS
+## IconTexture: Interface\AddOns\AuctionatorShoppingListCleaner\ASLCIcon.png
 
 #Versioning Information
 Version_Data.lua
