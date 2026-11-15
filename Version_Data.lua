@@ -20,5 +20,5 @@
 --
 --------------------------------------------------------------------------------
 
-C_ASLC_VERSION_UID = 1000000
-C_ASLC_VERSION_SEMANTIC_NUMBER = "1.0.0"
+C_ASLC_VERSION_UID = 1000001
+C_ASLC_VERSION_SEMANTIC_NUMBER = "1.0.1"

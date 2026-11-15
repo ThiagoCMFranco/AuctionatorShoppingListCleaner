@@ -32,6 +32,31 @@ local updateTimer = nil
 local RefreshShoppingUI
 local lastListSignature = nil
 
+-- =====================================================================
+-- Identifica Versão do Jogo
+-- =====================================================================
+local version, build, date, tocversion = GetBuildInfo()
+
+AuctionatorShoppingListCleaner_TOCVersion = 0
+
+AuctionatorShoppingListCleaner_Game_Flavor = "Other"
+AuctionatorShoppingListCleaner_TOCVersion = tocversion
+
+if (tocversion >= 00000 and tocversion < 110000) then
+	AuctionatorShoppingListCleaner_Game_Flavor = "Classic"
+	AuctionatorShoppingListCleaner_TOCVersion = tocversion
+end
+
+if (tocversion >= 110000) then
+    AuctionatorShoppingListCleaner_Game_Flavor = "Retail"
+	AuctionatorShoppingListCleaner_TOCVersion = tocversion
+end
+
+if (tocversion >= 16001 and tocversion < 16099) then
+    AuctionatorShoppingListCleaner_Game_Flavor = "Forever"
+	AuctionatorShoppingListCleaner_TOCVersion = tocversion
+end
+
 -- Gera uma assinatura rápida do estado atual das listas para detectar mudanças sem custo alto de processamento
 local function GetListsSignature()
     local lists = AUCTIONATOR_SHOPPING_LISTS
@@ -290,7 +315,12 @@ local function ToggleManagementWindow()
         return
     end
 
-    managementFrame = CreateFrame("Frame", "AuctionatorShoppingListCleanerManagerFrame", UIParent, "BasicFrameTemplateWithInset")
+    if AuctionatorShoppingListCleaner_Game_Flavor == "Forever" then 
+        managementFrame = CreateFrame("Frame", "AuctionatorShoppingListCleanerManagerFrame", UIParent, "PortraitFrameTemplate")
+        ButtonFrameTemplate_HidePortrait(managementFrame)
+    else
+        managementFrame = CreateFrame("Frame", "AuctionatorShoppingListCleanerManagerFrame", UIParent, "BasicFrameTemplateWithInset")
+    end
     managementFrame:SetSize(380, 420)
     
     if AuctionHouseFrame then
@@ -307,12 +337,18 @@ local function ToggleManagementWindow()
     managementFrame:SetClampedToScreen(true)
     managementFrame:SetScript("OnHide", function () PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE) ToggleRealtimeWatcher(false) end)
 
-    managementFrame.title = managementFrame:CreateFontString(nil, "OVERLAY")
-    managementFrame.title:SetFontObject("GameFontHighlight")
-    managementFrame.title:SetPoint("CENTER", managementFrame.TitleBg, "CENTER", 0, 0)
-    managementFrame.title:SetText(L["Window_Title"])
+    if managementFrame.SetTitle then
+        managementFrame:SetTitle(L["Window_Title"])
+    elseif managementFrame.TitleText then
+        managementFrame.TitleText:SetText(L["Window_Title"])
+    end
 
-    local scrollFrame = CreateFrame("ScrollFrame", nil, managementFrame, "UIPanelScrollFrameTemplate")
+    local scrollFrame = {}
+    if AuctionatorShoppingListCleaner_Game_Flavor == "Forever" then 
+        scrollFrame = CreateFrame("ScrollFrame", nil, managementFrame, "ScrollFrameTemplate")
+    else
+        scrollFrame = CreateFrame("ScrollFrame", nil, managementFrame, "UIPanelScrollFrameTemplate")
+    end
     scrollFrame:SetPoint("TOPLEFT", 10, -32)
     scrollFrame:SetPoint("BOTTOMRIGHT", -30, 50)
 
